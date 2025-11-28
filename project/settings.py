@@ -23,6 +23,18 @@ GOOGLE_CLIENT_ID = os.getenv('GOOGLE_CLIENT_ID')
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+
+# CSRF Trusted Origins
+CSRF_TRUSTED_ORIGINS = [
+    'https://resourceful-amazement-production.up.railway.app',
+    'http://localhost:8500',
+    'http://127.0.0.1:8500',
+]
+
+if os.getenv('RAILWAY_PUBLIC_DOMAIN'):
+    railway_domain = f"https://{os.getenv('RAILWAY_PUBLIC_DOMAIN')}"
+    if railway_domain not in CSRF_TRUSTED_ORIGINS:
+        CSRF_TRUSTED_ORIGINS.append(railway_domain)
         
 # Quick-start development settings - unsuitable for production
 
